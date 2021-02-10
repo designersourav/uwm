@@ -1,6 +1,7 @@
 {
   "name": "react-app",
   "version": "0.1.0",
+  "homepage": "http://urbanwatermaps.co.uk/",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",

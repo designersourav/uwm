@@ -9,7 +9,7 @@ import {Tile as TileLayer} from 'ol/layer'
 import {XYZ as XYZSource, TileWMS as TileWMSSource} from 'ol/source'
 // import {Select as SelectInteraction, defaults as DefaultInteractions} from 'ol/interaction'
 // import {Attribution, ScaleLine, ZoomSlider, Zoom, Rotate, MousePosition, OverviewMap, defaults as DefaultControls} from 'ol/control'
-import {ScaleLine, ZoomSlider, MousePosition, OverviewMap, defaults as DefaultControls} from 'ol/control'
+import {ScaleLine, ZoomSlider, Zoom, MousePosition, OverviewMap, defaults as DefaultControls} from 'ol/control'
 // import {Style, Fill as FillStyle, RegularShape as RegularShapeStyle, Stroke as StrokeStyle} from 'ol/style'
 // import {Projection, get as getProjection} from 'ol/proj'
 
@@ -71,6 +71,12 @@ class OLMapFragment extends React.Component {
     componentWillUnmount(){
         window.removeEventListener('resize', this.updateDimensions)
     }
+
+    zoomInHandler = () => {
+        let view = map.getView();
+        let zoom = view.getZoom();
+        view.setZoom(zoom + 1);
+    }
     render(){
         const style = {
             width: '100%',
@@ -78,7 +84,11 @@ class OLMapFragment extends React.Component {
             backgroundColor: '#cccccc',
         }
         return (
+            <div>
             <div id='map' style={style} >
+            </div>
+            <button id="zoomIn" onClick={this.zoomInHandler}>zoom +</button>
+            <button id="zoomOut">zoom -</button>
             </div>
         )
     }
